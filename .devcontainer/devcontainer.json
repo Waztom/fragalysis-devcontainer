@@ -1,0 +1,58 @@
+// Update the VARIANT arg in docker-compose.yml to pick a Python version: 3, 3.8, 3.7, 3.6
+{
+  "name": "Fragalysis backend development sandbox",
+  "dockerComposeFile": "docker-compose-dev.yml",
+  "service": "app",
+  "workspaceFolder": "/code",
+
+  // Set *default* container specific settings.json values on container create.
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "sqltools.connections": [
+      {
+        "name": "Container database",
+        "driver": "PostgreSQL",
+        "previewLimit": 50,
+        "server": "localhost",
+        "port": 5432,
+        "database": "postgres",
+        "username": "postgres",
+        "password": "postgres"
+      }
+    ],
+    "python.pythonPath": "/usr/local/lib/python3.9",
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.formatting.provider": "black",
+    "python.formatting.blackPath": "/usr/local/bin/black",
+    "python.formatting.blackArgs": ["--line-length", "100"],
+    "python.linting.flake8Path": "/usr/local/bin/flake8",
+    "python.linting.flake8Args": [
+      "--ignore=E203",
+      "--ignore=E266",
+      "--ignore=E501",
+      "--ignore=W503",
+      "--max-line-length=100",
+      "--select = B,C,E,F,W,T4,B9",
+      "--max-complexity = 18"
+    ]
+  },
+
+  // Add the IDs of extensions you want installed when the container is created.
+  "extensions": [
+    "ms-python.python",
+    "mtxr.sqltools",
+    "mtxr.sqltools-driver-pg",
+    "dsznajder.es7-react-js-snippets",
+    "esbenp.prettier-vscode"
+  ]
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [8000, 3000]
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+  // "postCreateCommand": "pip install --user -r requirements.txt",
+
+  // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+  // "remoteUser": "node"
+}

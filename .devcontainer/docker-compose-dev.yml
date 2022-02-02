@@ -1,0 +1,59 @@
+version: "3"
+
+services:
+  database:
+    image: postgres:12.2
+    container_name: devdatabase
+    volumes:
+      - ../data/postgre/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: fragalysis
+      POSTGRES_USER: fragalysis
+      POSTGRES_DB: frag
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+  graph:
+    container_name: devneo4j
+    image: neo4j:3.5
+    ports:
+      # Comment these two out in production
+      - "7474:7474"
+      - "7687:7687"
+    ulimits:
+      nofile:
+        soft: 40000
+        hard: 40000
+    volumes:
+      - ../data/neo4j/data:/data
+      - ../data/neo4j/logs:/logs
+    environment:
+      - NEO4J_AUTH=none
+      - NEO4J_dbms_memory_pagecache_size=4G
+  redis:
+    image: redis:alpine
+  app:
+    container_name: devapp
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ..:/code
+      - node_modules:/code/fragalysis-frontend/node_modules
+    command: sleep infinity
+    environment:
+      POSTGRESQL_DATABASE: frag
+      POSTGRESQL_USER: fragalysis
+      POSTGRESQL_PASSWORD: fragalysis
+      POSTGRESQL_HOST: database
+      POSTGRESQL_PORT: 5432
+    env_file:
+      - ./.devcontainerenv
+    ports:
+      - "8080:80"
+    depends_on:
+      - database
+      - graph
+
+volumes:
+  node_modules:
