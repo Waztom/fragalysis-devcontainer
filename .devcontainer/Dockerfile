@@ -12,7 +12,7 @@ RUN pip install -r requirements.txt
 RUN \
  apt-get update && \ 
  apt-get upgrade -y && \
- apt-get install -y nginx curl git git-crypt default-libmysqlclient-dev redis-server nano  
+ apt-get install -y gnupg2 nginx curl git git-crypt default-libmysqlclient-dev redis-server nano  
 
 RUN \
  apt-get install -y nodejs npm && \
