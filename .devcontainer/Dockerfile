@@ -20,12 +20,22 @@ RUN \
 
 WORKDIR /code/fragalysis-frontend
 RUN \
- npm install --global yarn && \
- yarn 
+ npm install --global yarn 
 
+# Symlink manin.js from frontend to backend -> gets served on localhost8080
+WORKDIR /code/fragalysis-backend
+RUN mkdir /code/fragalysis-backend/static
+# RUN ln -s /code/fragalysis-frontend/bundles /code/fragalysis-backend/static/bundles
+
+# Nginx configuration for sites and media locations
+WORKDIR /code
 COPY ./fragalysis-backend/django_nginx.conf /etc/nginx/sites-available/default.conf
 RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled
 
-COPY ./fragalysis-backend/nginx.conf /etc/nginx/nginx.conf
+COPY .devcontainer/devnginx.conf /etc/nginx/nginx.conf
 RUN mkdir /srv/logs/
+
+CMD cd /code/fragalysis-frontend/ & yarn run build & /code/fragalysis-frontend/bundles /code/fragalysis-backend/static/bundles
+
+
 
