@@ -36,15 +36,11 @@ RUN mkdir /code/fragalysis-backend/static && \
     chown -R root:www-data /code/fragalysis-backend/static
 
 # Frontend git clone step
-RUN git clone https://github.com/${FRONTEND_GIT_USER}/fragalysis-frontend.git /code/frontend
+RUN git clone https://github.com/ag-m2ms/fragalysis-frontend.git /code/frontend
 WORKDIR /code/frontend
 RUN \
- npm install --global yarn && \
- yarn install && \
- yarn run build   
+ npm install --global yarn
 
-RUN ln -s /code/frontend/bundles /code/fragalysis-backend/static/bundles
-# For linking - can we change this is Django settings to avoid doing this? 
-RUN ln -s /code/frontend/webpack-stats.json /code/fragalysis-backend/frontend/webpack-stats.json
+
 
 

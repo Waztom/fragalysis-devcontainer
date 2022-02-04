@@ -1,5 +1,4 @@
 #!/bin/bash
-/bin/bash /code/.devcontainer/makemigrations-dev-container.sh
 echo "Creating superuser..."
 # Automatically create the superuser...
 script="
@@ -16,22 +15,11 @@ if User.objects.filter(username=username).count()==0:
 else:
     print('Superuser creation skipped.')
 "
-printf "$script" | python3 manage.py shell
-
-# Prepare log files and start outputting logs to stdout
-touch /srv/logs/gunicorn.log
-touch /srv/logs/access.log
-tail -n 0 -f /srv/logs/*.log &
-
-echo "Testing nginx config..."
-nginx -t
-echo "Running nginx..."
-service nginx reload
-# service nginx start
-
-# Start Gunicorn processesv -> binding set for docker container port
+echo "Running migrations..."
 cd /code/fragalysis-backend/
-echo "Starting Gunicorn...."
-gunicorn fragalysis.wsgi:application --name fragalysis --bind 0.0.0.0:8080 
+# initial migrations for existing stack
+python3 manage.py makemigrations
+python3 manage.py migrate
 
-
+echo "Running collectstatic..."
+python3 manage.py collectstatic --noinput -v 0 # collect static files
