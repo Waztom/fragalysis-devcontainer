@@ -1,7 +1,7 @@
 FROM informaticsmatters/rdkit-python3-debian:Release_2021_09_2
 ENV PYTHONUNBUFFERED 1
 
-# Set Git UN etc here
+# Set Git UN etc here -> change the backend/frontend urls in the git clone steps
 ARG BACKEND_GIT_USER=Waztom
 ARG FRONTEND_GIT_USER=xchem
 
@@ -18,7 +18,8 @@ RUN \
  apt-get install -y nodejs npm && \
  apt-get autoclean -y 
 
-RUN git clone https://github.com/${BACKEND_GIT_USER}/fragalysis-backend.git
+# Backend git clone step
+RUN git clone https://github.com/${BACKEND_GIT_USER}/fragalysis-backend.git /code/fragalysis-backend
 WORKDIR /code/fragalysis-backend
 RUN pip install -r requirements.txt
 
@@ -34,7 +35,7 @@ RUN mkdir frontend
 RUN mkdir /code/fragalysis-backend/static && \
     chown -R root:www-data /code/fragalysis-backend/static
 
-
+# Frontend git clone step
 RUN git clone https://github.com/${FRONTEND_GIT_USER}/fragalysis-frontend.git /code/frontend
 WORKDIR /code/frontend
 RUN \
