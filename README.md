@@ -132,7 +132,10 @@ Open VS Code and go to File-> Open Folder and open the repository directory<br>
 
   > `./launch-backend.sh` <br>
 
-- use the Gunicorn/Nginx server by running:
+- before starting up the server to view Fragalysis in a browser, you need to start yarn by:
+-  > `cd /code/frontend && yarn start` 
+
+- After the main.js file has been bundled, use the Gunicorn/Nginx server by running:
   > `./launch-server.sh` <br>
 
 - or use the standard Django server by running:
