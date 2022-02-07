@@ -136,6 +136,6 @@ Open VS Code and go to File-> Open Folder and open the repository directory<br>
   > `./launch-server.sh` <br>
 
 - or use the standard Django server by running:
-  > `cd /code/fragalysis-backend && python3 manage.py runserver <br>
+  > `cd /code/fragalysis-backend && python3 manage.py runserver` <br>
 
 
