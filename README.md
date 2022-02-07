@@ -17,7 +17,7 @@ these instructions are designed for Visual Studio Code which can be installed fo
 
 Secrets required for running the Fragalysis development container are encrypted, to unencrypt and run you will need the key from the Fragalysis development software maintainer<br><br>
 
-# <a name="RepositoryfromGitHub"></a>Clone the "xchem-car" repository from GitHub
+# <a name="RepositoryfromGitHub"></a>Clone the "fragalysis-devcontainer" repository from GitHub
 
 If you do not have git installed, inside a terminal:
 
