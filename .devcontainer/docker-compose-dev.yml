@@ -39,8 +39,6 @@ services:
       dockerfile: .devcontainer/Dockerfile
     volumes:
       - ..:/code
-      - fragalysis-backend:/code/fragalysis-backend
-      - frontend:/code/frontend
     command: sleep infinity
     environment:
       POSTGRESQL_DATABASE: frag
@@ -60,5 +58,3 @@ volumes:
   pgdata:
   neo4jdata:
   neo4jlogs:
-  frontend:
-  fragalysis-backend:
