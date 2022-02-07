@@ -132,5 +132,10 @@ Open VS Code and go to File-> Open Folder and open the repository directory<br>
 
   > `./launch-backend.sh` <br>
 
-- to run the server:
+- use the Gunicorn/Nginx server by running:
   > `./launch-server.sh` <br>
+
+- or use the standard Django server by running:
+  > `cd /code/fragalysis-backend && python3 manage.py runserver <br>
+
+
