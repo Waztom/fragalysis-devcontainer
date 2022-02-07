@@ -83,13 +83,15 @@ Incorporation of VSCode with WSL for further information: https://code.visualstu
 
 - if you are using Ubuntu or Debian, you can install git-crypt by:
 
-> `sudo apt-get update` <br> >`sudo apt-get install git-crypt` <br>
+> `sudo apt-get update` <br> 
+> `sudo apt-get install git-crypt` <br>
 
 ## <a name="UnlockingSecrets"></a>Unlocking Secrets
 
 - once Git-Crypt is installed unlock the secrets using:
 
-> `cd fragalysis-devcontainer`<br> > `git-crypt unlock <'path to git-crypt crypt-key'>`<br>
+> `cd fragalysis-devcontainer`<br> 
+> `git-crypt unlock <'path to git-crypt crypt-key'>`<br>
 
 # <a name="Clone frontend and backend repos"></a>Start system
 
