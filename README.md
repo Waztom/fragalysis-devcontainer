@@ -2,7 +2,7 @@
 
 #
 
-Instructions for setting up Fragalysis in a development ,<br>
+Instructions for setting up Fragalysis in a VSCode development container,<br>
 
 ## <a name="Setting up Windows Subsystem for Linux"></a>Windows subsystem for linux
 
@@ -81,15 +81,23 @@ Incorporation of VSCode with WSL for further information: https://code.visualstu
 
 ## <a name="InstallGitCrypt"></a>Install Git-Crypt
 
-if you are using Ubuntu or Debian, you can install git-crypt by:
+- if you are using Ubuntu or Debian, you can install git-crypt by:
 
 > `sudo apt-get update` <br> >`sudo apt-get install git-crypt` <br>
 
 ## <a name="UnlockingSecrets"></a>Unlocking Secrets
 
-once Git-Crypt is installed unlock the secrets using:
+- once Git-Crypt is installed unlock the secrets using:
 
 > `cd fragalysis-devcontainer`<br> > `git-crypt unlock <'path to git-crypt crypt-key'>`<br>
+
+# <a name="Clone frontend and backend repos"></a>Start system
+
+- specify the fork you want to use here:
+
+> `git clone https://github.com/Waztom/fragalysis-backend.git`<br>
+
+> `git clone https://github.com/ag-m2ms/fragalysis-frontend.git`<br>
 
 # <a name="Startsystem"></a>Start system
 
