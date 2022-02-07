@@ -3,29 +3,28 @@ ENV PYTHONUNBUFFERED 1
 
 USER root
 
-COPY ./fragalysis-backend/requirements.txt /code/requirements.txt
-COPY ./fragalysis-frontend/package.json /code/fragalysis-frontend/package.json
-
+ADD . /code
 WORKDIR /code
-RUN pip install -r requirements.txt
 
 RUN \
  apt-get update && \ 
  apt-get upgrade -y && \
- apt-get install -y gnupg2 nginx curl git git-crypt default-libmysqlclient-dev redis-server nano  
-
-RUN \
+ apt-get install -y gnupg2 nginx curl git git-crypt default-libmysqlclient-dev redis-server nano && \
  apt-get install -y nodejs npm && \
- apt-get autoclean -y 
+ apt-get autoclean -y && \
+ npm install --global yarn
 
-WORKDIR /code/fragalysis-frontend
-RUN \
- npm install --global yarn && \
- yarn 
+# Install backend Python packages
+WORKDIR /code/fragalysis-backend
+RUN pip install -r requirements.txt
 
-COPY ./fragalysis-backend/django_nginx.conf /etc/nginx/sites-available/default.conf
+# Nginx settings
+COPY .devcontainer/devdjango_nginx.conf /etc/nginx/sites-available/default.conf
 RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled
-
-COPY ./fragalysis-backend/nginx.conf /etc/nginx/nginx.conf
+COPY .devcontainer/devnginx.conf /etc/nginx/nginx.conf
 RUN mkdir /srv/logs/
+ 
+
+
+
 
