@@ -3,7 +3,13 @@ ENV PYTHONUNBUFFERED 1
 
 USER root
 
+# Install backend Python packages
 WORKDIR /code
+COPY ../fragalysis-backend/requirements.txt /code/
+RUN pip install -r requirements.txt
+
+ADD ../fragalysis-backend /code/
+ADD ..fragalysis-frontend /code/frontend/
 
 RUN \
  apt-get update && \ 
@@ -12,11 +18,6 @@ RUN \
  apt-get install -y nodejs npm && \
  apt-get autoclean -y && \
  npm install --global yarn
-
-# Install backend Python packages
-WORKDIR /code
-COPY ../fragalysis-backend/requirements.txt /code/
-RUN pip install -r requirements.txt
 
 # Nginx settings
 COPY .devcontainer/devdjango_nginx.conf /etc/nginx/sites-available/default.conf
