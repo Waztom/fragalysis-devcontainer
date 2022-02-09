@@ -9,7 +9,6 @@ COPY ../fragalysis-backend/requirements.txt /code/
 RUN pip install -r requirements.txt
 
 ADD ../fragalysis-backend /code/
-ADD ..fragalysis-frontend /code/frontend/
 
 RUN \
  apt-get update && \ 
