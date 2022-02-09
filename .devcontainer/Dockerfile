@@ -3,7 +3,6 @@ ENV PYTHONUNBUFFERED 1
 
 USER root
 
-ADD . /code
 WORKDIR /code
 
 RUN \
@@ -15,7 +14,8 @@ RUN \
  npm install --global yarn
 
 # Install backend Python packages
-WORKDIR /code/fragalysis-backend
+WORKDIR /code
+COPY ../fragalysis-backend/requirements.txt /code/
 RUN pip install -r requirements.txt
 
 # Nginx settings

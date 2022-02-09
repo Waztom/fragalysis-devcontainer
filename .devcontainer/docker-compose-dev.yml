@@ -38,7 +38,10 @@ services:
       context: ..
       dockerfile: .devcontainer/Dockerfile
     volumes:
-      - ..:/code
+      - ../data/logs:/code/logs/
+      - ../data/media:/code/media/
+      - ../fragalysis-frontend:/code/frontend/
+      - ../fragalysis-backend:/code/
     command: sleep infinity
     environment:
       POSTGRESQL_DATABASE: frag
