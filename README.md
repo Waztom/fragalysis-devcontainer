@@ -2,7 +2,7 @@
 
 #
 
-Instructions for setting up Fragalysis in a VSCode development container,<br>
+Instructions for setting up Fragalysis in a VSCode development container<br>
 
 ## <a name="Setting up Windows Subsystem for Linux"></a>Windows subsystem for linux
 
@@ -11,13 +11,13 @@ For seting up WSL2 - you can follow these instructions: https://www.digitalocean
 
 ## <a name="VisualStudioCode"></a>Visual Studio Code
 
-these instructions are designed for Visual Studio Code which can be installed for free from: https://code.visualstudio.com/
+These instructions are designed for Visual Studio Code which can be installed for free from: https://code.visualstudio.com/
 
 ## <a name="GitCryptKey"></a>Git-Crypt Key
 
 Secrets required for running the Fragalysis development container are encrypted, to unencrypt and run you will need the key from the Fragalysis development software maintainer<br><br>
 
-# <a name="RepositoryfromGitHub"></a>Clone the "xchem-car" repository from GitHub
+# <a name="RepositoryfromGitHub"></a>Clone the "fragalysis-devcontainer" repository from GitHub
 
 If you do not have git installed, inside a terminal:
 
@@ -35,9 +35,9 @@ First you'll need Docker Desktop (or the relevent Docker Engine on Linux) you ca
 
 ## <a name="InstallDockerCompose"></a>Install Docker Compose
 
-if you're using a Linux machine, once Docker is installed also install docker compose, instructions are available at: https://docs.docker.com/compose/install/
+If you're using a Linux machine, once Docker is installed also install docker compose, instructions are available at: https://docs.docker.com/compose/install/
 
-for WSL (Windows), you do not need to install Docker compose
+For WSL (Windows), you do not need to install Docker compose
 
 ## <a name="InstallVSCodeExtention"></a>Install VS Code Extensions
 
@@ -55,7 +55,7 @@ you should get a response similar to:
 
 In Visual Studio Code open the extensions panel (left-hand panel or using Ctrl+Shift+X ) and search for "<em>Remote - Containers</em>" and click **Install**.
 
-Once installed a box with two arrows pointing in opposite directions should appear in the bottom left corner of Visual studio code
+Once installed a box with two arrows pointing in opposite directions should appear in the bottom left corner of Visual Studio Code
 <br>
 <br>
 
@@ -83,13 +83,15 @@ Incorporation of VSCode with WSL for further information: https://code.visualstu
 
 - if you are using Ubuntu or Debian, you can install git-crypt by:
 
-> `sudo apt-get update` <br> >`sudo apt-get install git-crypt` <br>
+> `sudo apt-get update` <br> 
+> `sudo apt-get install git-crypt` <br>
 
 ## <a name="UnlockingSecrets"></a>Unlocking Secrets
 
 - once Git-Crypt is installed unlock the secrets using:
 
-> `cd fragalysis-devcontainer`<br> > `git-crypt unlock <'path to git-crypt crypt-key'>`<br>
+> `cd fragalysis-devcontainer`<br> 
+> `git-crypt unlock <'path to git-crypt crypt-key'>`<br>
 
 # <a name="Clone frontend and backend repos"></a>Start system
 
@@ -126,9 +128,17 @@ Open VS Code and go to File-> Open Folder and open the repository directory<br>
 
   > `./launch-frontend.sh` <br>
 
-- to run the backend migrations, run:
+- to run the backend Django migrations, run:
 
   > `./launch-backend.sh` <br>
 
-- to run the server:
+- before starting up the server to view Fragalysis in a browser, you need to start yarn by:
+  > `cd /code/frontend && yarn start` 
+
+- After the main.js file has been bundled, use the Gunicorn/Nginx server by running:
   > `./launch-server.sh` <br>
+
+- or use the standard Django server by running:
+  > `cd /code/fragalysis-backend && python3 manage.py runserver` <br>
+
+
