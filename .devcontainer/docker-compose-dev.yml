@@ -38,11 +38,11 @@ services:
       context: ..
       dockerfile: .devcontainer/Dockerfile
     volumes:
-      - ../data/logs:/code/logs/
-      - ../data/media:/code/media/
-      - ../fragalysis-frontend:/code/frontend/
-      - ../fragalysis-backend:/code/
-      - ../.devcontainer:/code/.devcontainer/
+      - ./data/logs:/code/logs/
+      - ./data/media:/code/media/
+      - ./fragalysis-frontend:/code/frontend/
+      - ./fragalysis-backend:/code/
+      - ./.devcontainer:/code/.devcontainer/
     command: sleep infinity
     environment:
       POSTGRESQL_DATABASE: frag
@@ -51,7 +51,7 @@ services:
       POSTGRESQL_HOST: database
       POSTGRESQL_PORT: 5432
     env_file:
-      - ./.devcontainerenv
+      - .devcontainerenv
     ports:
       - "8080:80"
     depends_on:
