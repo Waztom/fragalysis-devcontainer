@@ -3,12 +3,11 @@ ENV PYTHONUNBUFFERED 1
 
 USER root
 
+ADD ../fragalysis-backend/requirements.txt /code/requirements.txt
+
 # Install backend Python packages
 WORKDIR /code
-COPY ../fragalysis-backend/requirements.txt /code/
 RUN pip install -r requirements.txt
-
-ADD ../fragalysis-backend /code/
 
 RUN \
  apt-get update && \ 

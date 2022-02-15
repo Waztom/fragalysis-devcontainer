@@ -42,6 +42,7 @@ services:
       - ../data/media:/code/media/
       - ../fragalysis-frontend:/code/frontend/
       - ../fragalysis-backend:/code/
+      - ../.devcontainer:/code/.devcontainer/
     command: sleep infinity
     environment:
       POSTGRESQL_DATABASE: frag
