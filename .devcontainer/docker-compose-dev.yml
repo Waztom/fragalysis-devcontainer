@@ -5,7 +5,7 @@ services:
     image: postgres:12.2
     container_name: devdatabase
     volumes:
-      - ../data/postgre/data:/var/lib/postgresql/data
+      - postgredata:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: fragalysis
       POSTGRES_USER: fragalysis
@@ -25,24 +25,20 @@ services:
         soft: 40000
         hard: 40000
     volumes:
-      - ../data/neo4j/data:/data
-      - ../data/neo4j/logs:/logs
+      - neo4jdata:/data
+      - neo4jlogs:/logs
     environment:
       - NEO4J_AUTH=none
       - NEO4J_dbms_memory_pagecache_size=4G
-  redis:
-    image: redis:alpine
   app:
     container_name: devapp
     build:
       context: ..
       dockerfile: .devcontainer/Dockerfile
     volumes:
-      - ./data/logs:/code/logs/
-      - ./data/media:/code/media/
-      - ./fragalysis-frontend:/code/frontend/
-      - ./fragalysis-backend:/code/
-      - ./.devcontainer:/code/.devcontainer/
+      - ../fragalysis-backend:/code
+      - ../fragalysis-frontend:/code/frontend
+      - ../.devcontainer:/code/.devcontainer
     command: sleep infinity
     environment:
       POSTGRESQL_DATABASE: frag
@@ -57,3 +53,8 @@ services:
     depends_on:
       - database
       - graph
+
+volumes:
+  postgredata:
+  neo4jdata:
+  neo4jlogs:

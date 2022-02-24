@@ -3,7 +3,10 @@ ENV PYTHONUNBUFFERED 1
 
 USER root
 
-ADD ./fragalysis-backend/requirements.txt /code/requirements.txt
+# Copy code over
+ADD ../fragalysis-backend /code
+ADD ../fragalysis-frontend /code/frontend
+ADD ../.devcontainer /code/.devcontainer
 
 # Install backend Python packages
 WORKDIR /code
@@ -22,6 +25,7 @@ COPY .devcontainer/devdjango_nginx.conf /etc/nginx/sites-available/default.conf
 RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled
 COPY .devcontainer/devnginx.conf /etc/nginx/nginx.conf
 RUN mkdir /srv/logs/
+RUN mkdir /code/logs/ 
  
 
 
