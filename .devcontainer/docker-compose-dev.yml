@@ -37,7 +37,7 @@ services:
       dockerfile: .devcontainer/Dockerfile
     volumes:
       - ../fragalysis-backend:/code
-      - ../fragalysis-frontend:/code/frontend
+      - ../fragalysis-frontend:/code/fragalysis-frontend
       - ../.devcontainer:/code/.devcontainer
     command: sleep infinity
     environment:
