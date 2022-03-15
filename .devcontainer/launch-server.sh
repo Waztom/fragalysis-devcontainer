@@ -11,7 +11,7 @@ service nginx reload
 
 # Start Gunicorn processesv -> binding set for docker container port
 echo "Starting Gunicorn..."
-cd /code/fragalysis-backend/
+cd /code
 gunicorn fragalysis.wsgi:application --name fragalysis --bind 0.0.0.0:8080 
 
 
