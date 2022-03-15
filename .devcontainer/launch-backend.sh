@@ -17,7 +17,7 @@ else:
 "
 
 echo "Running migrations..."
-cd /code/fragalysis-backend/
+cd /code
 # initial migrations for existing stack
 python3 manage.py makemigrations
 python3 manage.py migrate
