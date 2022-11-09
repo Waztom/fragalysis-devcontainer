@@ -11,9 +11,13 @@ ADD ../.devcontainer /code/.devcontainer
 # Install backend Python packages
 WORKDIR /code
 RUN \
+ mkdir -p logs &&\
+ cd logs &&\
+ touch logfile.log &&\
+ cd .. &&\
  apt-get update && \ 
  apt-get upgrade -y && \
- apt-get install -y python3-pip python3-pandas python3-psycopg2 black libjpeg-dev && \
+ apt-get install -y python3-pip python3-pandas python3-psycopg2 black flake8 libjpeg-dev && \
  pip install -r requirements.txt && \
  apt-get install -y gnupg2 nginx curl git git-crypt default-libmysqlclient-dev redis-server nano && \
  apt-get install -y nodejs npm && \
