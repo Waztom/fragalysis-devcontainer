@@ -4,6 +4,8 @@
 
 Instructions for setting up Fragalysis in a VSCode development container<br>
 
+You can find the most up to date instructions for getting started with VSCode Dev Containers at: https://code.visualstudio.com/docs/devcontainers/tutorial
+
 ## <a name="Setting up Windows Subsystem for Linux"></a>Windows subsystem for linux
 
 If you're using Windows, to install git-crypt, it's strongly advised that you install Windows Subsystem for Linux (WSL).
@@ -53,18 +55,11 @@ you should get a response similar to:
 
 > Docker version 18.09.2, build 6247962
 
-In Visual Studio Code open the extensions panel (left-hand panel or using Ctrl+Shift+X ) and search for "<em>Remote - Containers</em>" and click **Install**.
+In Visual Studio Code open the extensions panel (left-hand panel or using Ctrl+Shift+X ) and search for "<em>Dev Containers</em>" and click **Install**.
 
 Once installed a box with two arrows pointing in opposite directions should appear in the bottom left corner of Visual Studio Code
 <br>
 <br>
-
-## <a name="InstallRemoteWSL"></a>Install Remote - WSL Extension
-
-If you are running WSL - you need to install the Remote - WSL extension. Skip this step if you're running Ubuntu/Linux.
-
-Ctrl + SHIFT + X and type in 'Remote - WSL' to install the extension.
-See (https://code.visualstudio.com/blogs/2020/07/01/containers-wsl) for more information about using dev containers in WSL2
 
 # <a name="gitcrypt"></a>git-crypt
 
@@ -83,7 +78,8 @@ Incorporation of VSCode with WSL for further information: https://code.visualstu
 
 - if you are using Ubuntu or Debian, you can install git-crypt by:
 
-> `sudo apt-get update` <br> 
+> `sudo apt-get update` <br>
+> > `sudo apt-get upgrade` <br> 
 > `sudo apt-get install git-crypt` <br>
 
 ## <a name="UnlockingSecrets"></a>Unlocking Secrets
@@ -139,6 +135,8 @@ Open VS Code and go to File-> Open Folder and open the repository directory<br>
   > `./launch-server.sh` <br>
 
 - or use the standard Django server by running:
-  > `cd /code/fragalysis-backend && python3 manage.py runserver` <br>
+  > `cd /code && python3 manage.py runserver` <br>
 
 
+
+  
